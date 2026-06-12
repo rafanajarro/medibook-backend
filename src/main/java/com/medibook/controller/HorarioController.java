@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/horarios")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class HorarioController {
     private final HorarioService horarioService;
     private final AuditoriaService auditoriaService;

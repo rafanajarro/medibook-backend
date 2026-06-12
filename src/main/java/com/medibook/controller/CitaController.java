@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/citas")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class CitaController {
 
     private final CitaService citaService;

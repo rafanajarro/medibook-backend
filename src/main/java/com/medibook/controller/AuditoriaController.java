@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/auditoria")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class AuditoriaController {
 
     private final AuditoriaService auditoriaService;
