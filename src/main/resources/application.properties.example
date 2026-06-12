@@ -1,0 +1,6 @@
+spring.datasource.url=jdbc:postgresql://localhost:5432/citas_medicas
+spring.datasource.username=tu_usuario
+spring.datasource.password=tu_password
+jwt.secret=tu_clave_secreta
+spring.mail.username=tu_correo@gmail.com
+spring.mail.password=tu_app_password
