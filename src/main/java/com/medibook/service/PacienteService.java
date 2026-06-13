@@ -72,4 +72,12 @@ public class PacienteService {
         response.setDireccion(paciente.getDireccion());
         return response;
     }
+
+    public PacienteResponse obtenerPorEmail(String email) {
+        Paciente paciente = pacienteRepository.findAll().stream()
+                .filter(p -> p.getUsuario().getEmail().equals(email))
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFoundException("Paciente no encontrado"));
+        return toResponse(paciente);
+    }
 }

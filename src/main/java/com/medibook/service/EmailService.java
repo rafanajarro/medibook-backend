@@ -3,6 +3,7 @@ package com.medibook.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class EmailService {
     private final JavaMailSender mailSender;
 
+    @Async
     public void enviarConfirmacionCita(String destinatario, String nombrePaciente,
                                        String nombreMedico, String fecha, String hora) {
         SimpleMailMessage mensaje = new SimpleMailMessage();
@@ -27,6 +29,7 @@ public class EmailService {
         mailSender.send(mensaje);
     }
 
+    @Async
     public void enviarCancelacionCita(String destinatario, String nombrePaciente,
                                       String nombreMedico, String fecha, String hora) {
         SimpleMailMessage mensaje = new SimpleMailMessage();
@@ -44,6 +47,7 @@ public class EmailService {
         mailSender.send(mensaje);
     }
 
+    @Async
     public void enviarReprogramacionCita(String destinatario, String nombrePaciente,
                                          String nombreMedico, String fecha, String hora) {
         SimpleMailMessage mensaje = new SimpleMailMessage();

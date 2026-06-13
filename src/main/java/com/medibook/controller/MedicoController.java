@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,5 +62,18 @@ public class MedicoController {
                 "Médico eliminado id: " + id,
                 httpRequest.getRemoteAddr());
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/mi-perfil")
+    @PreAuthorize("hasRole('MEDICO')")
+    public ResponseEntity<MedicoResponse> miPerfil() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return ResponseEntity.ok(medicoService.obtenerPorEmail(email));
+    }
+
+    @GetMapping("/activos")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MEDICO', 'PACIENTE')")
+    public ResponseEntity<List<MedicoResponse>> listarActivos() {
+        return ResponseEntity.ok(medicoService.listarActivos());
     }
 }

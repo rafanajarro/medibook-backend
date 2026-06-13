@@ -95,4 +95,19 @@ public class MedicoService {
                 .collect(Collectors.toSet()));
         return response;
     }
+
+    public MedicoResponse obtenerPorEmail(String email) {
+        Medico medico = medicoRepository.findAll().stream()
+                .filter(m -> m.getUsuario().getEmail().equals(email))
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFoundException("Médico no encontrado"));
+        return toResponse(medico);
+    }
+
+    public List<MedicoResponse> listarActivos() {
+        return medicoRepository.findAll().stream()
+                .filter(Medico::getActivo)
+                .map(this::toResponse)
+                .collect(Collectors.toList());
+    }
 }
